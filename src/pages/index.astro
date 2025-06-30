@@ -3,7 +3,7 @@ import { graphQLClient, gql } from '../lib/graphql';
 
 const GET_KETOHOUSE_POSTS = gql`
   query GetKetohousePosts {
-    posts(where: { categoryName: "Keto House Recipes" }) {
+    posts(where: { categoryNameIn: ["ketohouse", "all"] }) {
       nodes {
         title
         uri
