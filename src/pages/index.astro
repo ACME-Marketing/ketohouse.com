@@ -8,6 +8,11 @@ const GET_KETOHOUSE_POSTS = gql`
       nodes {
         title
         uri
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
         categories {
           nodes {
             name
@@ -34,13 +39,18 @@ try {
 
 	<main class="container">
 		{posts.length > 0 ? (
-			<ul>
+			<ul class="post-list">
 				{posts.map((post) => (
-					<li>
-						<a href={post.uri}>{post.title}</a>
-						{post.categories && post.categories.nodes.length > 0 && (
-							<span> ({post.categories.nodes.map(cat => cat.name).join(', ')})</span>
+					<li class="post-card">
+						{post.featuredImage && post.featuredImage.node && (
+							<img src={post.featuredImage.node.sourceUrl} alt={post.title} class="post-image" />
 						)}
+						<div class="post-content">
+							<a href={post.uri}><h2>{post.title}</h2></a>
+							{post.categories && post.categories.nodes.length > 0 && (
+								<p class="post-categories">Categories: {post.categories.nodes.map(cat => cat.name).join(', ')}</p>
+							)}
+						</div>
 					</li>
 				))}
 			</ul>
