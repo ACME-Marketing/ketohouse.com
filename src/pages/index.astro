@@ -4,7 +4,7 @@ import { graphQLClient, gql } from '../lib/graphql';
 
 const GET_KETOHOUSE_POSTS = gql`
   query GetKetohousePosts {
-    posts(where: { categoryNameIn: ["ketohouse", "all"] }) {
+    posts(where: { tagIn: ["ketohouse", "all"] }) {
       nodes {
         title
         uri
@@ -13,7 +13,7 @@ const GET_KETOHOUSE_POSTS = gql`
             sourceUrl
           }
         }
-        categories {
+        tags {
           nodes {
             name
           }
@@ -47,15 +47,15 @@ try {
 						)}
 						<div class="post-content">
 							<a href={post.uri}><h2>{post.title}</h2></a>
-							{post.categories && post.categories.nodes.length > 0 && (
-								<p class="post-categories">Categories: {post.categories.nodes.map(cat => cat.name).join(', ')}</p>
+							{post.tags && post.tags.nodes.length > 0 && (
+								<p class="post-categories">Tags: {post.tags.nodes.map(tag => tag.name).join(', ')}</p>
 							)}
 						</div>
 					</li>
 				))}
 			</ul>
 		) : (
-			<p>No posts found. Please add some posts in your WordPress CMS with the category "Keto House Recipes" or "all".</p>
+			<p>No posts found. Please add some posts in your WordPress CMS with the tag "ketohouse" or "all".</p>
 		)}
 	</main>
 
