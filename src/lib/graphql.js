@@ -69,9 +69,34 @@ export const getPostsByCategory = async (categoryName) => {
   return data.posts.nodes;
 };
 
+export const getRecipes = async () => {
+  // This query looks for posts that have BOTH 'ketohouse' AND 'recipes' tags
+  const query = gql`
+    query GetRecipes {
+      posts(where: { tagSlugIn: ["ketohouse"], status: PUBLISH }) {
+        nodes {
+          uri
+          title
+          tags {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await requestWithRetry(query);
+  // Filter to only include posts that have BOTH tags
+  return data.posts.nodes.filter(post => 
+    post.tags.nodes.some(tag => tag.slug === 'recipes')
+  );
+};
+
 export const getPostByUri = async (uri) => {
   const query = gql`
-    query GetPostByUri($uri: String!) {
+    query GetPostByUri($uri: ID!) {
       post(id: $uri, idType: URI) {
         title
         content

@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPostsByCategory, getPostByUri } from '../../lib/graphql';
+import { getRecipes, getPostByUri } from '../../lib/graphql';
 
 export async function getStaticPaths() {
-  const recipes = await getPostsByCategory('Recipes');
+  const recipes = await getRecipes();
 
   return recipes.map((recipe) => ({
     params: { slug: recipe.uri.replace(/\/$/, "") },
