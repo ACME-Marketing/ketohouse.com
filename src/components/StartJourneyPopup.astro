@@ -6,8 +6,8 @@
   <div class="popup-container">
     <button class="popup-close" aria-label="Close popup">&times;</button>
     <div class="popup-header">
-      <h2>Start Your Keto Journey Today!</h2>
-      <p>Get personalized meal plans and expert guidance</p>
+      <h2>Join the Waitlist</h2>
+      <p>Be the first to access our premium keto-friendly packaged goods</p>
     </div>
     <div class="popup-content">
       <form id="journey-form" method="POST" action="https://n8n.srv874889.hstgr.cloud/webhook-test/9224df70-9a41-48c7-9934-6b2d6f2d03e1">
@@ -32,41 +32,28 @@
         </div>
         
         <div class="form-group">
-          <label for="keto_goal">What's your main keto goal?<span class="required">*</span></label>
-          <select id="keto_goal" name="keto_goal" required class="form-control">
-            <option value="" disabled selected>Select your goal</option>
-            <option value="weight_loss">Weight Loss</option>
-            <option value="health_improvement">Health Improvement</option>
-            <option value="mental_clarity">Mental Clarity</option>
-            <option value="athletic_performance">Athletic Performance</option>
-            <option value="disease_management">Disease Management</option>
+          <label for="interests">What keto products interest you most?<span class="required">*</span></label>
+          <select id="interests" name="interests" required class="form-control">
+            <option value="" disabled selected>Select your interest</option>
+            <option value="keto_snacks">Keto Snacks</option>
+            <option value="meal_replacements">Meal Replacements</option>
+            <option value="keto_desserts">Keto Desserts</option>
+            <option value="beverages">Keto Beverages</option>
+            <option value="cooking_ingredients">Cooking Ingredients</option>
+            <option value="all_products">All Products</option>
           </select>
         </div>
         
-        <div class="form-group">
-          <label class="d-block">Have you tried keto before?</label>
-          <div class="radio-group">
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="keto_experience_yes" name="keto_experience" value="Yes" required>
-              <label class="form-check-label" for="keto_experience_yes">Yes</label>
-            </div>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="keto_experience_no" name="keto_experience" value="No" required>
-              <label class="form-check-label" for="keto_experience_no">No</label>
-            </div>
-          </div>
-        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Join Waitlist</button>
         
-        <button type="submit" class="btn btn-primary btn-lg">Get Started</button>
-        
-        <p class="form-disclaimer">By submitting, you agree to receive emails about keto tips, recipes, and exclusive offers. You can unsubscribe anytime.</p>
+        <p class="form-disclaimer">By submitting, you agree to receive updates about our product launch and exclusive early access offers. You can unsubscribe anytime.</p>
         
         <div class="form-status"></div>
       </form>
       
       <div id="form-success" class="form-success" style="display: none;">
-        <h3>Welcome to KetoHouse! 🎉</h3>
-        <p>Check your email for your personalized keto starter guide. We're excited to be part of your journey!</p>
+        <h3>You're on the list! 🎉</h3>
+        <p>Thank you for joining our waitlist. You'll be the first to know when our keto-friendly packaged goods launch!</p>
       </div>
     </div>
   </div>
@@ -397,7 +384,7 @@
       })
       .finally(() => {
         submitButton.disabled = false;
-        submitButton.textContent = 'Get Started';
+        submitButton.textContent = 'Join Waitlist';
       });
     });
   });
