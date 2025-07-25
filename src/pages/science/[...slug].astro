@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPostsByCategory, getPostByUri } from '../../lib/graphql';
+
+export async function getStaticPaths() {
+  const posts = await getPostsByCategory('Science');
+
+  return posts.map((post) => ({
+    params: { slug: post.uri.replace(/\/$/, "") },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const fullPost = await getPostByUri(post.uri);
+---
+
+<BaseLayout>
+  <article>
+    <h1 class="text-4xl font-bold">{fullPost.title}</h1>
+    <div class="mt-4 prose lg:prose-xl" set:html={fullPost.content} />
+  </article>
+</BaseLayout>

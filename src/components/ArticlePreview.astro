@@ -1,0 +1,9 @@
+---
+const { article } = Astro.props;
+---
+
+<a href={`/science${article.uri}`} class="block border rounded-lg overflow-hidden hover:shadow-lg">
+  <div class="p-4">
+    <h2 class="text-xl font-bold">{article.title}</h2>
+  </div>
+</a>

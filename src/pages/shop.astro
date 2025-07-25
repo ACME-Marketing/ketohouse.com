@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold">Shop</h1>
+  <p class="mt-4">Keto-friendly products are coming soon! Sign up below to be notified when our shop goes live.</p>
+  <form class="mt-4" onsubmit="handleFormSubmit(event)">
+    <input type="email" name="email" placeholder="Enter your email" class="p-2 border rounded" />
+    <button type="submit" class="p-2 bg-blue-500 text-white rounded">Notify Me</button>
+  </form>
+</BaseLayout>
+
+<script>
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const email = formData.get('email');
+
+    if (!email) {
+      alert('Please enter your email address.');
+      return;
+    }
+
+    try {
+      const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        alert('Thank you! We will notify you when our shop is available.');
+        form.reset();
+      } else {
+        alert('There was an error. Please try again.');
+      }
+    } catch (error) {
+      alert('There was a network error. Please try again.');
+    }
+  }
+</script>

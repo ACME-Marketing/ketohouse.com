@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecipeCard from '../../components/RecipeCard.astro';
+import { getPostsByCategory, getPostsByTag, getAllTags } from '../../lib/graphql';
+
+const allRecipes = await getPostsByCategory('Recipes');
+const allTags = await getAllTags();
+
+let filteredRecipes = allRecipes;
+let selectedTag = Astro.url.searchParams.get('tag');
+
+if (selectedTag) {
+  const recipesByTag = await getPostsByTag(selectedTag);
+  filteredRecipes = recipesByTag;
+}
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold mb-6">Recipes</h1>
+
+  <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Filter by Tag:</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/recipes" class={`px-4 py-2 rounded-full text-sm ${!selectedTag ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>All</a>
+      {allTags.map(tag => (
+        <a href={`/recipes?tag=${tag.slug}`} class={`px-4 py-2 rounded-full text-sm ${selectedTag === tag.slug ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
+          {tag.name}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {filteredRecipes.length > 0 ? (
+      filteredRecipes.map(recipe => <RecipeCard recipe={recipe} />)
+    ) : (
+      <p class="col-span-full text-center text-gray-500">No recipes found for the selected filter.</p>
+    )}
+  </div>
+</BaseLayout>
