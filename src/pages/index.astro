@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
+import StartJourneyPopup from '../components/StartJourneyPopup.astro';
 ---
 
 <BaseLayout>
@@ -15,9 +16,9 @@ import Button from '../components/Button.astro';
         Science-backed nutrition meets delicious recipes. Join thousands who've discovered sustainable health through the ketogenic lifestyle.
       </p>
       <div class="flex flex-wrap gap-4 justify-center animate-slide-up">
-        <a href="/recipes" class="bg-keto-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-keto-green-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+        <button onclick="openStartJourneyPopup()" class="bg-keto-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-keto-green-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
           Start Your Journey
-        </a>
+        </button>
         <a href="/science" class="bg-white text-keto-green-600 px-8 py-4 rounded-full font-semibold text-lg border-2 border-keto-green-600 hover:bg-keto-green-50 transform hover:scale-105 transition-all duration-300">
           Learn the Science
         </a>
@@ -120,4 +121,7 @@ import Button from '../components/Button.astro';
       </div>
     </div>
   </section>
+  
+  <!-- Include the popup component -->
+  <StartJourneyPopup />
 </BaseLayout>

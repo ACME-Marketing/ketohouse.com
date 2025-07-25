@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP0S990H7M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WP0S990H7M');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ice Cream Preference Quiz</title>
+  <style>
+    :root {
+      --primary-color: #3b82f6;
+      --primary-color-hover: #2563eb;
+      --primary-color-focus: 59, 130, 246;
+      --form-bg-color: #ffffff;
+      --form-text-color: #000000;
+      --response-bg-color: #e8f5e9;
+      --border-radius: 0.375rem;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --transition-duration: 0.2s;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+    
+    .form-header {
+      padding: 2rem;
+      background-color: var(--primary-color);
+      color: white;
+      position: relative;
+    }
+    
+    .form-header h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    .form-header::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(to right bottom, rgba(0,0,0,0.1) 50%, transparent 50%);
+    }
+    
+    .form-content {
+      padding: 2rem;
+      background-color: var(--form-bg-color);
+      color: var(--form-text-color);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--form-text-color);
+    }
+    
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      transition: border-color var(--transition-duration) ease-in-out, box-shadow var(--transition-duration) ease-in-out;
+    }
+    
+    .form-control:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: var(--primary-color);
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-focus), 0.25);
+    }
+    
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .form-check {
+      display: block;
+      min-height: 1.5rem;
+      padding-left: 1.5em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-check-input {
+      float: left;
+      margin-left: -1.5em;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.25em;
+      vertical-align: top;
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      appearance: none;
+      color-adjust: exact;
+      transition: background-color var(--transition-duration) ease-in-out, background-position var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out, box-shadow var(--transition-duration) ease-in-out;
+    }
+    
+    .form-check-input[type="checkbox"] {
+      border-radius: 0.25em;
+    }
+    
+    .form-check-input[type="radio"] {
+      border-radius: 50%;
+    }
+    
+    .form-check-input:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .form-check-input:checked[type="checkbox"] {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+    }
+    
+    .form-check-input:checked[type="radio"] {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    }
+    
+    .form-check-label {
+      color: var(--form-text-color);
+    }
+    
+    .checkbox-group,
+    .radio-group {
+      margin-top: 0.5rem;
+    }
+    
+    .required {
+      color: #dc3545;
+      margin-left: 4px;
+    }
+    
+    .form-text {
+      margin-top: 0.25rem;
+      font-size: 0.875em;
+      color: #6c757d;
+    }
+    
+    .btn {
+      display: inline-block;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #212529;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: middle;
+      cursor: pointer;
+      user-select: none;
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: var(--border-radius);
+      transition: color var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out, box-shadow var(--transition-duration) ease-in-out;
+    }
+    
+    .btn-primary {
+      color: #fff;
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+      color: #fff;
+      background-color: var(--primary-color-hover);
+      border-color: var(--primary-color-hover);
+    }
+    
+    .btn-primary:focus {
+      color: #fff;
+      background-color: var(--primary-color-hover);
+      border-color: var(--primary-color-hover);
+      box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-focus), 0.5);
+    }
+    
+    .btn-outline-primary {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-outline-primary:hover {
+      color: #fff;
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-lg {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1.25rem;
+    }
+    
+    .custom-file {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: calc(1.5em + 1.5rem + 2px);
+      margin-bottom: 0;
+    }
+    
+    .custom-file-input {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: calc(1.5em + 1.5rem + 2px);
+      margin: 0;
+      opacity: 0;
+    }
+    
+    .custom-file-label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      height: calc(1.5em + 1.5rem + 2px);
+      padding: 0.75rem 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #6c757d;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out, box-shadow var(--transition-duration) ease-in-out;
+    }
+    
+    .custom-file-input:focus ~ .custom-file-label {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-focus), 0.25);
+    }
+    
+    .custom-file-label::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      display: block;
+      height: calc(1.5em + 1.5rem);
+      padding: 0.75rem 1rem;
+      line-height: 1.5;
+      color: #fff;
+      content: "Browse";
+      background-color: var(--primary-color);
+      border-left: inherit;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    
+    /* Audio recorder styles */
+    .audio-recorder {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .record-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .record-button.recording {
+      background-color: #dc3545;
+      border-color: #dc3545;
+      color: #fff;
+    }
+    
+    .record-status {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+    
+    /* Custom switch styles */
+    .custom-control {
+      position: relative;
+      display: block;
+      min-height: 1.5rem;
+      padding-left: 2.5rem;
+    }
+    
+    .custom-control-input {
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      width: 1.5rem;
+      height: 1.5rem;
+      opacity: 0;
+    }
+    
+    .custom-switch .custom-control-label::before {
+      left: -2.25rem;
+      width: 1.75rem;
+      pointer-events: all;
+      border-radius: 0.875rem;
+    }
+    
+    .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+      background-color: #fff;
+      transform: translateX(0.75rem);
+    }
+    
+    .custom-switch .custom-control-label::after {
+      top: calc(0.25rem + 2px);
+      left: calc(-2.25rem + 2px);
+      width: calc(1rem - 4px);
+      height: calc(1rem - 4px);
+      background-color: #adb5bd;
+      border-radius: 0.5rem;
+      transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out;
+    }
+    
+    .custom-control-label {
+      position: relative;
+      margin-bottom: 0;
+      vertical-align: top;
+    }
+    
+    .custom-control-label::before {
+      position: absolute;
+      top: 0.25rem;
+      left: -1.5rem;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      pointer-events: none;
+      content: "";
+      background-color: #fff;
+      border: 1px solid #adb5bd;
+    }
+    
+    .custom-control-label::after {
+      position: absolute;
+      top: 0.25rem;
+      left: -1.5rem;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      content: "";
+      background: no-repeat 50% / 50% 50%;
+    }
+    
+    .custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+      color: #fff;
+      border-color: var(--primary-color);
+      background-color: var(--primary-color);
+    }
+    
+    .form-switch-wrapper {
+      padding: 0.75rem 1rem;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .form-group {
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .container {
+        width: 100%;
+      }
+      
+      .form-header,
+      .form-content {
+        padding: 1.5rem;
+      }
+      
+      .btn-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Progress bar for form submission */
+    .progress {
+      display: none;
+      height: 4px;
+      overflow: hidden;
+      background-color: #e9ecef;
+      border-radius: 0.25rem;
+      margin-top: 1rem;
+    }
+    
+    .progress-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      background-color: var(--primary-color);
+      transition: width 0.6s ease;
+    }
+    
+    /* Form submission status */
+    .form-status {
+      display: none;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: var(--border-radius);
+    }
+    
+    .form-status.success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }
+    
+    .form-status.error {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+    
+    /* HTML content styling */
+    .html-content {
+      background-color: rgba(0, 0, 0, 0.03);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+    }
+    
+    .html-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .html-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .html-content a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .html-content a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Webhook response message */
+    .webhook-response {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      background-color: var(--response-bg-color);
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .webhook-response h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    
+    .webhook-response-content {
+      white-space: pre-wrap;
+    }
+    
+    .d-block {
+      display: block;
+    }
+    
+    .d-flex {
+      display: flex;
+    }
+    
+    .justify-content-between {
+      justify-content: space-between;
+    }
+    
+    .align-items-center {
+      align-items: center;
+    }
+    
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+    
+    .w-100 {
+      width: 100%;
+    }
+    
+    .bg-light {
+      background-color: #f8f9fa;
+    }
+    
+    .rounded {
+      border-radius: var(--border-radius);
+    }
+    
+    .p-3 {
+      padding: 1rem;
+    }
+    
+    .file-upload-container {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    
+    .file-drop-area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 150px;
+      padding: 1.5rem;
+      border: 2px dashed #ced4da;
+      border-radius: var(--border-radius);
+      background-color: #f8f9fa;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .file-drop-area:hover,
+    .file-drop-area.is-active {
+      background-color: rgba(var(--primary-color-focus), 0.05);
+      border-color: var(--primary-color);
+    }
+    
+    .file-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    .file-drop-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #6c757d;
+    }
+    
+    .plus-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      color: #adb5bd;
+      transition: color 0.3s ease;
+    }
+    
+    .file-drop-area:hover .plus-icon {
+      color: var(--primary-color);
+    }
+    
+    .file-drop-message p {
+      margin: 0;
+      font-size: 0.875rem;
+    }
+    
+    .selected-files {
+      margin-top: 0.75rem;
+    }
+    
+    .selected-file {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.5rem;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      font-size: 0.875rem;
+    }
+    
+    .selected-file:last-child {
+      margin-bottom: 0;
+    }
+    
+    .file-info {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .file-icon {
+      margin-right: 0.5rem;
+      color: #6c757d;
+    }
+    
+    .file-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .file-remove {
+      margin-left: 0.5rem;
+      padding: 0.25rem;
+      background: none;
+      border: none;
+      color: #dc3545;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    
+    .file-remove:hover {
+      opacity: 1;
+    }
+    
+    .file-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .preview-item {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .preview-item .file-type {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: #e9ecef;
+      color: #495057;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-header">
+      <h1>Ice Cream Preference Quiz</h1>
+    </div>
+    <div class="form-content">
+      <form id="webhook-form" method="POST" action="https://n8n.srv874889.hstgr.cloud/webhook-test/9224df70-9a41-48c7-9934-6b2d6f2d03e1" enctype="multipart/form-data">
+        
+          <div class="form-group" id="container-text-1753476154132"  >
+            <label for="text-1753476154132">First Name<span class="required">*</span></label>
+            <input type="text" id="text-1753476154132" name="first_name" placeholder="First Name" required class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-text-1753476157812"  >
+            <label for="text-1753476157812">Last Name<span class="required">*</span></label>
+            <input type="text" id="text-1753476157812" name="last_name" placeholder="Last Name" required class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-email-1753476172686"  >
+            <label for="email-1753476172686">Email<span class="required">*</span></label>
+            <input type="email" id="email-1753476172686" name="email" placeholder="Email" required class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-phone-1753476182713"  >
+            <label for="phone-1753476182713">Phone (req'd if you want text updates)</label>
+            <input type="tel" id="phone-1753476182713" name="phone" placeholder="optional for text/SMS updates"  class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-date-1753476192773"  >
+            <label for="date-1753476192773">Best Day Picker<span class="required">*</span></label>
+            <input type="date" id="date-1753476192773" name="my_date" required class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-time-1753476458069" data-conditional="time-1753476458069" style="display: none;">
+            <label for="time-1753476458069">Best Time</label>
+            <input type="time" id="time-1753476458069" name="my_time"  class="form-control">
+          </div>
+        
+          <div class="form-group" id="container-radio-1753476208530"  >
+            <label class="d-block">I like ice cream</label>
+            <div class="radio-group">
+              
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio-1753476208530-0" name="radio_icecream" value="Yes" >
+            <label class="form-check-label" for="radio-1753476208530-0">Yes</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio-1753476208530-1" name="radio_icecream" value="No" >
+            <label class="form-check-label" for="radio-1753476208530-1">No</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio-1753476208530-2" name="radio_icecream" value="Lactose Intolerant" >
+            <label class="form-check-label" for="radio-1753476208530-2">Lactose Intolerant</label>
+          </div>
+        
+            </div>
+          </div>
+        
+          <div class="form-group" id="container-select-1753476223802"  >
+            <label for="select-1753476223802">Dropdown<span class="required">*</span></label>
+            <select id="select-1753476223802" name="dropdown" required class="form-control">
+              <option value="" disabled selected>Age Group</option>
+              <option value="13 and under">13 and under</option><option value="14-17">14-17</option><option value="18-25">18-25</option><option value="26-37">26-37</option><option value="38-55">38-55</option>
+            </select>
+          </div>
+        
+          <div class="form-group" id="container-checkbox-1753476482803" data-conditional="checkbox-1753476482803" style="display: none;">
+            <label class="d-block">Flavors</label>
+            <div class="checkbox-group">
+              
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476482803-0" name="ice_cream_flavor" value="chocolate">
+            <label class="form-check-label" for="checkbox-1753476482803-0">chocolate</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476482803-1" name="ice_cream_flavor" value="vanilla">
+            <label class="form-check-label" for="checkbox-1753476482803-1">vanilla</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476482803-2" name="ice_cream_flavor" value="strawberry">
+            <label class="form-check-label" for="checkbox-1753476482803-2">strawberry</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476482803-3" name="ice_cream_flavor" value="None of the above">
+            <label class="form-check-label" for="checkbox-1753476482803-3">None of the above</label>
+          </div>
+        
+            </div>
+          </div>
+        
+          <div class="form-group" id="container-checkbox-1753476228817" data-conditional="checkbox-1753476228817" style="display: none;">
+            <label class="d-block">Style<span class="required">*</span></label>
+            <div class="checkbox-group">
+              
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476228817-0" name="ice_cream_style" value="Cone with Soft Serve">
+            <label class="form-check-label" for="checkbox-1753476228817-0">Cone with Soft Serve</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476228817-1" name="ice_cream_style" value="Cone with Scoop">
+            <label class="form-check-label" for="checkbox-1753476228817-1">Cone with Scoop</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476228817-2" name="ice_cream_style" value="Cup with Soft Serve">
+            <label class="form-check-label" for="checkbox-1753476228817-2">Cup with Soft Serve</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox-1753476228817-3" name="ice_cream_style" value="Cup with Scoop">
+            <label class="form-check-label" for="checkbox-1753476228817-3">Cup with Scoop</label>
+          </div>
+        
+            </div>
+          </div>
+        
+          <div class="form-group form-switch-wrapper d-flex justify-content-between align-items-center" id="container-switch-1753477515102" data-conditional="switch-1753477515102" style="display: none;">
+            <label for="switch-1753477515102">Sprinkles</label>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="switch-1753477515102" name="sprinkles" >
+              <label class="custom-control-label" for="switch-1753477515102"></label>
+            </div>
+          </div>
+        
+        <button type="submit" class="btn btn-primary btn-lg">Let's go</button>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+        <div class="form-status"></div>
+      </form>
+      <div id="webhook-response" class="webhook-response">
+        <h3>Thank you for your submission</h3>
+        <div id="webhook-response-content" class="webhook-response-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form submission handler
+    document.getElementById('webhook-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const formData = new FormData(form);
+      const submitButton = form.querySelector('button[type="submit"]');
+      const progressBar = form.querySelector('.progress');
+      const progressBarInner = form.querySelector('.progress-bar');
+      const formStatus = form.querySelector('.form-status');
+      const webhookResponse = document.getElementById('webhook-response');
+      const webhookResponseContent = document.getElementById('webhook-response-content');
+      
+      // Reset status
+      formStatus.className = 'form-status';
+      formStatus.style.display = 'none';
+      formStatus.textContent = '';
+      webhookResponse.style.display = 'none';
+      webhookResponseContent.textContent = '';
+      
+      // Disable submit button during submission
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+      
+      // Show progress bar
+      progressBar.style.display = 'block';
+      
+      // Simulate progress
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 5;
+        progressBarInner.style.width = Math.min(progress, 90) + '%';
+        if (progress >= 90) clearInterval(progressInterval);
+      }, 100);
+      
+      // Process audio recordings to MP3 if available
+      const audioPromises = [];
+      document.querySelectorAll('input[type="hidden"][name^="audio"]').forEach(input => {
+        if (input.value && input.value.startsWith('data:audio')) {
+          const audioPromise = processAudioToMP3(input.value, input.name)
+            .then(mp3Blob => {
+              // Replace the base64 data with the MP3 blob in the FormData
+              formData.delete(input.name);
+              formData.append(input.name, mp3Blob, input.name + '.mp3');
+            })
+            .catch(err => {
+              console.error('Error converting audio to MP3:', err);
+              // If conversion fails, use the original audio data
+            });
+          
+          audioPromises.push(audioPromise);
+        }
+      });
+      
+      // Wait for all audio processing to complete before submitting
+      Promise.all(audioPromises).then(() => {
+        // Send form data to webhook URL
+        fetch('https://n8n.srv874889.hstgr.cloud/webhook-test/9224df70-9a41-48c7-9934-6b2d6f2d03e1', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          clearInterval(progressInterval);
+          progressBarInner.style.width = '100%';
+          
+          // First handle the HTTP response
+          if (response.ok) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Form submitted successfully!';
+            form.reset();
+            
+            // Reset file input labels
+            document.querySelectorAll('.custom-file-label').forEach(label => {
+              label.textContent = 'Choose file';
+            });
+            
+            // Reset audio players
+            document.querySelectorAll('audio').forEach(audio => {
+              audio.style.display = 'none';
+              audio.src = '';
+            });
+            
+            // Reset audio status
+            document.querySelectorAll('.record-status').forEach(status => {
+              status.textContent = '';
+            });
+            
+            // Handle the webhook response data
+            return response.text().then(data => {
+              try {
+                // Try to parse as JSON first
+                const jsonData = JSON.parse(data);
+                return jsonData;
+              } catch (e) {
+                // If not JSON, return as text
+                return data;
+              }
+            });
+          } else {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Error submitting form. Please try again.';
+            return Promise.reject('Server responded with error');
+          }
+          
+          formStatus.style.display = 'block';
+        })
+        .then(data => {
+          // This only runs when response is successful
+          if (data) {
+            console.log('Webhook response:', data);
+            const webhookResponse = document.getElementById('webhook-response');
+            const webhookResponseContent = document.getElementById('webhook-response-content');
+            
+            webhookResponse.style.display = 'block';
+            
+            // Display all data first (keeping the stable version)
+            webhookResponseContent.textContent = JSON.stringify(data, null, 2);
+
+            // After the content is set, format it
+            formatWebhookResponse();
+          }
+        })
+        .catch(error => {
+          clearInterval(progressInterval);
+          console.error('Error:', error);
+          
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Error submitting form. Please try again.';
+          formStatus.style.display = 'block';
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+          
+          // Hide progress bar after a delay
+          setTimeout(() => {
+            progressBar.style.display = 'none';
+            progressBarInner.style.width = '0%';
+          }, 1000);
+        });
+      });
+    });
+
+    // Function to convert audio data to MP3 format
+    async function processAudioToMP3(audioData, fieldName) {
+      // This is a placeholder for MP3 conversion
+      // In a real implementation, you would use a library like lamejs
+      // For now, we'll just return the original audio data as a blob
+      
+      // Extract the base64 data from the data URL
+      const base64Data = audioData.split(',')[1];
+      const binaryData = atob(base64Data);
+      
+      // Convert to array buffer
+      const arrayBuffer = new ArrayBuffer(binaryData.length);
+      const uint8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < binaryData.length; i++) {
+        uint8Array[i] = binaryData.charCodeAt(i);
+      }
+      
+      // Create blob with audio/mp3 MIME type
+      return new Blob([uint8Array], { type: 'audio/mp3' });
+    }
+
+    // File input handler
+    document.querySelectorAll('.file-input').forEach(input => {
+      const fileDropArea = input.closest('.file-drop-area');
+      const fileDropMessage = fileDropArea.querySelector('.file-drop-message');
+      const filePreview = fileDropArea.querySelector('.file-preview');
+      const selectedFilesContainer = document.getElementById('selected-files-' + input.id);
+      
+      const formatFileSize = (bytes) => {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      };
+      
+      const getFileIcon = (fileType) => {
+        const fileIcons = {
+          'image': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>',
+          'video': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>',
+          'audio': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>',
+          'pdf': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+          'doc': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+          'default': '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>'
+        };
+        
+        if (fileType.startsWith('image/')) return fileIcons.image;
+        if (fileType.startsWith('video/')) return fileIcons.video;
+        if (fileType.startsWith('audio/')) return fileIcons.audio;
+        if (fileType === 'application/pdf') return fileIcons.pdf;
+        if (fileType.includes('document') || fileType.includes('msword') || fileType.includes('officedocument')) return fileIcons.doc;
+        return fileIcons.default;
+      };
+      
+      const createFilePreview = (file) => {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item';
+            previewItem.innerHTML = '<img src="' + e.target.result + '" alt="' + file.name + '">';
+            filePreview.appendChild(previewItem);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      
+      const updateSelectedFiles = () => {
+        selectedFilesContainer.innerHTML = '';
+        filePreview.innerHTML = '';
+        
+        if (input.files.length > 0) {
+          fileDropMessage.style.display = 'none';
+          Array.from(input.files).forEach((file) => {
+            // Create file item
+            const fileItem = document.createElement('div');
+            fileItem.className = 'selected-file';
+            fileItem.innerHTML = 
+              '<div class="file-info">' +
+                '<span class="file-icon">' + getFileIcon(file.type) + '</span>' +
+                '<span class="file-name" title="' + file.name + '">' + file.name + '</span>' +
+                '<small class="ml-2 text-muted">(' + formatFileSize(file.size) + ')</small>' +
+              '</div>';
+            selectedFilesContainer.appendChild(fileItem);
+            
+            // Create preview for images
+            createFilePreview(file);
+          });
+        } else {
+          fileDropMessage.style.display = 'flex';
+        }
+      };
+      
+      // Handle file selection via input
+      input.addEventListener('change', updateSelectedFiles);
+      
+      // Handle drag and drop
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        fileDropArea.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, false);
+      });
+      
+      ['dragenter', 'dragover'].forEach(eventName => {
+        fileDropArea.addEventListener(eventName, () => {
+          fileDropArea.classList.add('is-active');
+        }, false);
+      });
+      
+      ['dragleave', 'drop'].forEach(eventName => {
+        fileDropArea.addEventListener(eventName, () => {
+          fileDropArea.classList.remove('is-active');
+        }, false);
+      });
+      
+      fileDropArea.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        if (dt.files.length) {
+          if (input.getAttribute('multiple') !== null || dt.files.length === 1) {
+            input.files = dt.files;
+            updateSelectedFiles();
+          } else {
+            alert('Multiple files not allowed. Please drop only one file.');
+          }
+        }
+      }, false);
+      
+      // Make the entire drop area clickable
+      fileDropArea.addEventListener('click', () => {
+        input.click();
+      });
+    });
+
+    // Audio recorder functionality
+    document.querySelectorAll('.record-button').forEach(button => {
+      let mediaRecorder;
+      let audioChunks = [];
+      let isRecording = false;
+      
+      const buttonId = button.id;
+      const fieldId = buttonId.replace('-record', '');
+      const statusElement = document.getElementById(fieldId + '-status');
+      const audioPlayer = document.getElementById(fieldId + '-player');
+      const hiddenInput = document.getElementById(fieldId);
+      
+      button.addEventListener('click', function() {
+        if (isRecording) {
+          stopRecording();
+        } else {
+          startRecording();
+        }
+      });
+      
+      async function startRecording() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          
+          mediaRecorder.ondataavailable = event => {
+            audioChunks.push(event.data);
+          };
+          
+          mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            audioPlayer.src = audioUrl;
+            audioPlayer.style.display = 'block';
+            
+            // Convert to base64 for form submission
+            const reader = new FileReader();
+            reader.readAsDataURL(audioBlob);
+            reader.onloadend = () => {
+              const base64data = reader.result;
+              hiddenInput.value = base64data;
+            };
+          };
+          
+          audioChunks = [];
+          mediaRecorder.start();
+          isRecording = true;
+          
+          button.classList.add('recording');
+          statusElement.textContent = 'Recording... Click again to stop';
+        } catch (err) {
+          console.error('Error accessing microphone:', err);
+          statusElement.textContent = 'Error: Could not access microphone';
+        }
+      }
+      
+      function stopRecording() {
+        if (mediaRecorder && isRecording) {
+          mediaRecorder.stop();
+          isRecording = false;
+          
+          // Stop all audio tracks
+          mediaRecorder.stream.getTracks().forEach(track => track.stop());
+          
+          button.classList.remove('recording');
+          statusElement.textContent = 'Recording saved';
+        }
+      }
+    });
+    
+    
+  const widgetInfo = {"text-1753476154132":{"type":"text","name":"first_name"},"text-1753476157812":{"type":"text","name":"last_name"},"email-1753476172686":{"type":"email","name":"email"},"phone-1753476182713":{"type":"phone","name":"phone"},"date-1753476192773":{"type":"date","name":"my_date"},"time-1753476458069":{"type":"time","name":"my_time"},"radio-1753476208530":{"type":"radio","name":"radio_icecream"},"select-1753476223802":{"type":"select","name":"dropdown"},"checkbox-1753476482803":{"type":"checkbox","name":"ice_cream_flavor"},"checkbox-1753476228817":{"type":"checkbox","name":"ice_cream_style"},"switch-1753477515102":{"type":"switch","name":"sprinkles"}};
+
+  function equals(v1, v2) { const res = String(v1).toLowerCase() === String(v2).toLowerCase(); console.log('[equals]', v1, v2, '=>', res); return res; }
+  function not_equals(v1, v2) { const res = String(v1).toLowerCase() !== String(v2).toLowerCase(); console.log('[not_equals]', v1, v2, '=>', res); return res; }
+  function contains(v1, v2) { const res = v1 && v2 && String(v1).toLowerCase().includes(String(v2).toLowerCase()); console.log('[contains]', v1, v2, '=>', res); return res; }
+  function not_contains(v1, v2) { const res = !(v1 && v2 && String(v1).toLowerCase().includes(String(v2).toLowerCase())); console.log('[not_contains]', v1, v2, '=>', res); return res; }
+  function starts_with(v1, v2) { const res = v1 && v2 && String(v1).toLowerCase().startsWith(String(v2).toLowerCase()); console.log('[starts_with]', v1, v2, '=>', res); return res; }
+  function ends_with(v1, v2) { const res = v1 && v2 && String(v1).toLowerCase().endsWith(String(v2).toLowerCase()); console.log('[ends_with]', v1, v2, '=>', res); return res; }
+  function is_empty(v) { const res = v === '' || v === null || v === undefined; console.log('[is_empty]', v, '=>', res); return res; }
+  function is_not_empty(v) { const res = !is_empty(v); console.log('[is_not_empty]', v, '=>', res); return res; }
+  function greater_than(v1, v2) { const n1 = parseFloat(v1); const n2 = parseFloat(v2); const res = !isNaN(n1) && !isNaN(n2) && n1 > n2; console.log('[greater_than]', v1, v2, '=>', res); return res; }
+  function less_than(v1, v2) { const n1 = parseFloat(v1); const n2 = parseFloat(v2); const res = !isNaN(n1) && !isNaN(n2) && n1 < n2; console.log('[less_than]', v1, v2, '=>', res); return res; }
+  function is_checked(v) { const res = v === true || String(v).toLowerCase() === 'true' || String(v).toLowerCase() === 'yes' || String(v).toLowerCase() === 'on'; console.log('[is_checked]', v, '=>', res); return res; }
+  function is_not_checked(v) { const res = !is_checked(v); console.log('[is_not_checked]', v, '=>', res); return res; }
+
+  function getFieldValue(fieldId) {
+    const info = widgetInfo[fieldId];
+    console.log('[getFieldValue] fieldId:', fieldId, 'info:', info);
+    if (!info) {
+      const el = document.getElementById(fieldId);
+      console.log('[getFieldValue] Fallback el:', el);
+      if (el) {
+        if (el.type === 'radio') {
+          const radiosNamed = document.getElementsByName(el.name);
+          for (let i = 0; i < radiosNamed.length; i++) { if (radiosNamed[i].checked) { console.log('[getFieldValue] radio checked:', radiosNamed[i].value); return radiosNamed[i].value; } }
+          return '';
+        }
+        if (el.type === 'checkbox') { console.log('[getFieldValue] checkbox checked:', el.checked); return el.checked; }
+        console.log('[getFieldValue] value:', el.value);
+        return el.value;
+      }
+      console.warn('[getFieldValue] Element not found for fieldId:', fieldId);
+      return '';
+    }
+    const element = document.getElementById(fieldId);
+    console.log('[getFieldValue] element:', element);
+    switch (info.type) {
+      case 'radio':
+        if (!info.name) { console.warn('[getFieldValue] radio missing name:', fieldId); return ''; }
+        const radios = document.getElementsByName(info.name);
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) { console.log('[getFieldValue] radio checked:', radios[i].value); return radios[i].value; }
+        }
+        return '';
+      case 'checkbox':
+        if (info.name) { 
+            const checkboxes = document.getElementsByName(info.name);
+            let isAnyChecked = false;
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) { isAnyChecked = true; break; }
+            }
+            console.log('[getFieldValue] checkbox group any checked:', isAnyChecked);
+            return isAnyChecked; 
+        }
+        if (element && typeof element.checked === 'boolean') { console.log('[getFieldValue] single checkbox checked:', element.checked); return element.checked; }
+        return false; 
+      case 'switch':
+        if (element && typeof element.checked === 'boolean') { console.log('[getFieldValue] switch checked:', element.checked); return element.checked; }
+        return false;
+      default:
+        if (element) { console.log('[getFieldValue] default value:', element.value); return element.value; }
+        return '';
+      }
+  }
+  
+    function evaluateConditionsForWidget_time_1753476458069() {
+      console.log('[evaluateConditionsForWidget] widgetId:', 'time-1753476458069', 'conditions:', {"logic":"AND","groups":[{"id":"group-1753476624228","logic":"AND","conditions":[{"id":"condition-1753476624228","field":"date-1753476192773","operator":"is_not_empty","value":""}]}]});
+      const container = document.getElementById('container-time-1753476458069');
+      if (!container) { console.warn('[evaluateConditionsForWidget] Container not found:', 'container-time-1753476458069'); return; }
+
+      const widgetConditions = {"logic":"AND","groups":[{"id":"group-1753476624228","logic":"AND","conditions":[{"id":"condition-1753476624228","field":"date-1753476192773","operator":"is_not_empty","value":""}]}]}; // Store conditions in local variable
+      let overallShouldShow;
+      const groupResults = [];
+      let processedAnyGroup = false;
+
+      
+      // Group 1 (logic: AND)
+      {
+        const group = {"id":"group-1753476624228","logic":"AND","conditions":[{"id":"condition-1753476624228","field":"date-1753476192773","operator":"is_not_empty","value":""}]}; // Define group variable for this scope
+        let groupSatisfied = group.logic === 'AND';
+        let validConditionsProcessedInGroup = 0;
+
+        
+        // Cond 1 (Field: date-1753476192773)
+          {
+            const fieldValue = getFieldValue('date-1753476192773');
+          console.log('[condition] widgetId: time-1753476458069, group: 1, cond: 1, field: date-1753476192773, operator: is_not_empty, value:', fieldValue, 'vs', '');
+          let conditionPasses = false;
+          conditionPasses = is_not_empty(fieldValue);
+          console.log('[condition result] widgetId: time-1753476458069, group: 1, cond: 1, result:', conditionPasses);
+          if (group.logic === 'AND') {
+            groupSatisfied = groupSatisfied && conditionPasses;
+          } else { // OR
+            groupSatisfied = groupSatisfied || conditionPasses;
+          }
+          validConditionsProcessedInGroup++;
+        }
+
+        if (group.conditions.length > 0 && validConditionsProcessedInGroup === 0) {
+           console.log('[group] widgetId: time-1753476458069, group: 1, all conditions invalid.');
+        }
+        groupResults.push(groupSatisfied);
+        processedAnyGroup = true;
+        console.log('[group result] widgetId: time-1753476458069, group: 1, result:', groupSatisfied);
+      }
+
+      if (!processedAnyGroup && widgetConditions.groups && widgetConditions.groups.length > 0) { 
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: time-1753476458069, no valid groups, default show:', overallShouldShow);
+      } else if (groupResults.length > 0) {
+        if (widgetConditions.logic === 'AND') {
+          overallShouldShow = groupResults.every(r => r);
+        } else { // OR
+          overallShouldShow = groupResults.some(r => r);
+        }
+        console.log('[widget] widgetId: time-1753476458069, groupResults:', groupResults, 'overallShouldShow:', overallShouldShow);
+      } else { // No groups or no processable groups
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: time-1753476458069, no groups, default show:', overallShouldShow);
+      }
+
+      container.style.display = overallShouldShow ? '' : 'none';
+      console.log('[DOM] widgetId: time-1753476458069, set display:', overallShouldShow ? '' : 'none');
+
+        const inputs = container.querySelectorAll('input, select, textarea');
+      inputs.forEach(inputEl => {
+        const el = inputEl;
+        const originalRequired = el.dataset.originalRequired === undefined ? el.hasAttribute('required') : el.dataset.originalRequired === 'true';
+        if (el.dataset.originalRequired === undefined) {
+            el.dataset.originalRequired = originalRequired ? 'true' : 'false';
+        }
+
+        if (!overallShouldShow) {
+          if (el.hasAttribute('required')) {
+            el.removeAttribute('required');
+            el.dataset.conditionallyHiddenRequired = 'true';
+            console.log('[DOM] widgetId: time-1753476458069, input', el, 'removed required');
+          }
+        } else {
+          if (el.dataset.conditionallyHiddenRequired === 'true' || (el.dataset.originalRequired === 'true' && !el.hasAttribute('required'))) {
+            el.setAttribute('required', '');
+            if(el.dataset.conditionallyHiddenRequired === 'true') el.removeAttribute('data-conditionally-hidden-required');
+            console.log('[DOM] widgetId: time-1753476458069, input', el, 'set required');
+          }
+        }
+      });
+    }
+    
+    function evaluateConditionsForWidget_checkbox_1753476482803() {
+      console.log('[evaluateConditionsForWidget] widgetId:', 'checkbox-1753476482803', 'conditions:', {"logic":"AND","groups":[{"id":"group-1753477314061","logic":"AND","conditions":[{"id":"condition-1753477314061","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]});
+      const container = document.getElementById('container-checkbox-1753476482803');
+      if (!container) { console.warn('[evaluateConditionsForWidget] Container not found:', 'container-checkbox-1753476482803'); return; }
+
+      const widgetConditions = {"logic":"AND","groups":[{"id":"group-1753477314061","logic":"AND","conditions":[{"id":"condition-1753477314061","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]}; // Store conditions in local variable
+      let overallShouldShow;
+      const groupResults = [];
+      let processedAnyGroup = false;
+
+      
+      // Group 1 (logic: AND)
+      {
+        const group = {"id":"group-1753477314061","logic":"AND","conditions":[{"id":"condition-1753477314061","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}; // Define group variable for this scope
+        let groupSatisfied = group.logic === 'AND';
+        let validConditionsProcessedInGroup = 0;
+
+        
+        // Cond 1 (Field: radio-1753476208530)
+          {
+            const fieldValue = getFieldValue('radio-1753476208530');
+          console.log('[condition] widgetId: checkbox-1753476482803, group: 1, cond: 1, field: radio-1753476208530, operator: equals, value:', fieldValue, 'vs', 'Yes');
+          let conditionPasses = false;
+          conditionPasses = equals(fieldValue, 'Yes');
+          console.log('[condition result] widgetId: checkbox-1753476482803, group: 1, cond: 1, result:', conditionPasses);
+          if (group.logic === 'AND') {
+            groupSatisfied = groupSatisfied && conditionPasses;
+          } else { // OR
+            groupSatisfied = groupSatisfied || conditionPasses;
+          }
+          validConditionsProcessedInGroup++;
+        }
+
+        if (group.conditions.length > 0 && validConditionsProcessedInGroup === 0) {
+           console.log('[group] widgetId: checkbox-1753476482803, group: 1, all conditions invalid.');
+        }
+        groupResults.push(groupSatisfied);
+        processedAnyGroup = true;
+        console.log('[group result] widgetId: checkbox-1753476482803, group: 1, result:', groupSatisfied);
+      }
+
+      if (!processedAnyGroup && widgetConditions.groups && widgetConditions.groups.length > 0) { 
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: checkbox-1753476482803, no valid groups, default show:', overallShouldShow);
+      } else if (groupResults.length > 0) {
+        if (widgetConditions.logic === 'AND') {
+          overallShouldShow = groupResults.every(r => r);
+        } else { // OR
+          overallShouldShow = groupResults.some(r => r);
+        }
+        console.log('[widget] widgetId: checkbox-1753476482803, groupResults:', groupResults, 'overallShouldShow:', overallShouldShow);
+      } else { // No groups or no processable groups
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: checkbox-1753476482803, no groups, default show:', overallShouldShow);
+      }
+
+      container.style.display = overallShouldShow ? '' : 'none';
+      console.log('[DOM] widgetId: checkbox-1753476482803, set display:', overallShouldShow ? '' : 'none');
+
+        const inputs = container.querySelectorAll('input, select, textarea');
+      inputs.forEach(inputEl => {
+        const el = inputEl;
+        const originalRequired = el.dataset.originalRequired === undefined ? el.hasAttribute('required') : el.dataset.originalRequired === 'true';
+        if (el.dataset.originalRequired === undefined) {
+            el.dataset.originalRequired = originalRequired ? 'true' : 'false';
+        }
+
+        if (!overallShouldShow) {
+          if (el.hasAttribute('required')) {
+            el.removeAttribute('required');
+            el.dataset.conditionallyHiddenRequired = 'true';
+            console.log('[DOM] widgetId: checkbox-1753476482803, input', el, 'removed required');
+          }
+        } else {
+          if (el.dataset.conditionallyHiddenRequired === 'true' || (el.dataset.originalRequired === 'true' && !el.hasAttribute('required'))) {
+            el.setAttribute('required', '');
+            if(el.dataset.conditionallyHiddenRequired === 'true') el.removeAttribute('data-conditionally-hidden-required');
+            console.log('[DOM] widgetId: checkbox-1753476482803, input', el, 'set required');
+          }
+        }
+      });
+    }
+    
+    function evaluateConditionsForWidget_checkbox_1753476228817() {
+      console.log('[evaluateConditionsForWidget] widgetId:', 'checkbox-1753476228817', 'conditions:', {"logic":"AND","groups":[{"id":"group-1753477474793","logic":"AND","conditions":[{"id":"condition-1753477474793","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]});
+      const container = document.getElementById('container-checkbox-1753476228817');
+      if (!container) { console.warn('[evaluateConditionsForWidget] Container not found:', 'container-checkbox-1753476228817'); return; }
+
+      const widgetConditions = {"logic":"AND","groups":[{"id":"group-1753477474793","logic":"AND","conditions":[{"id":"condition-1753477474793","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]}; // Store conditions in local variable
+      let overallShouldShow;
+      const groupResults = [];
+      let processedAnyGroup = false;
+
+      
+      // Group 1 (logic: AND)
+      {
+        const group = {"id":"group-1753477474793","logic":"AND","conditions":[{"id":"condition-1753477474793","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}; // Define group variable for this scope
+        let groupSatisfied = group.logic === 'AND';
+        let validConditionsProcessedInGroup = 0;
+
+        
+        // Cond 1 (Field: radio-1753476208530)
+          {
+            const fieldValue = getFieldValue('radio-1753476208530');
+          console.log('[condition] widgetId: checkbox-1753476228817, group: 1, cond: 1, field: radio-1753476208530, operator: equals, value:', fieldValue, 'vs', 'Yes');
+          let conditionPasses = false;
+          conditionPasses = equals(fieldValue, 'Yes');
+          console.log('[condition result] widgetId: checkbox-1753476228817, group: 1, cond: 1, result:', conditionPasses);
+          if (group.logic === 'AND') {
+            groupSatisfied = groupSatisfied && conditionPasses;
+          } else { // OR
+            groupSatisfied = groupSatisfied || conditionPasses;
+          }
+          validConditionsProcessedInGroup++;
+        }
+
+        if (group.conditions.length > 0 && validConditionsProcessedInGroup === 0) {
+           console.log('[group] widgetId: checkbox-1753476228817, group: 1, all conditions invalid.');
+        }
+        groupResults.push(groupSatisfied);
+        processedAnyGroup = true;
+        console.log('[group result] widgetId: checkbox-1753476228817, group: 1, result:', groupSatisfied);
+      }
+
+      if (!processedAnyGroup && widgetConditions.groups && widgetConditions.groups.length > 0) { 
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: checkbox-1753476228817, no valid groups, default show:', overallShouldShow);
+      } else if (groupResults.length > 0) {
+        if (widgetConditions.logic === 'AND') {
+          overallShouldShow = groupResults.every(r => r);
+        } else { // OR
+          overallShouldShow = groupResults.some(r => r);
+        }
+        console.log('[widget] widgetId: checkbox-1753476228817, groupResults:', groupResults, 'overallShouldShow:', overallShouldShow);
+      } else { // No groups or no processable groups
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: checkbox-1753476228817, no groups, default show:', overallShouldShow);
+      }
+
+      container.style.display = overallShouldShow ? '' : 'none';
+      console.log('[DOM] widgetId: checkbox-1753476228817, set display:', overallShouldShow ? '' : 'none');
+
+        const inputs = container.querySelectorAll('input, select, textarea');
+      inputs.forEach(inputEl => {
+        const el = inputEl;
+        const originalRequired = el.dataset.originalRequired === undefined ? el.hasAttribute('required') : el.dataset.originalRequired === 'true';
+        if (el.dataset.originalRequired === undefined) {
+            el.dataset.originalRequired = originalRequired ? 'true' : 'false';
+        }
+
+        if (!overallShouldShow) {
+          if (el.hasAttribute('required')) {
+            el.removeAttribute('required');
+            el.dataset.conditionallyHiddenRequired = 'true';
+            console.log('[DOM] widgetId: checkbox-1753476228817, input', el, 'removed required');
+          }
+        } else {
+          if (el.dataset.conditionallyHiddenRequired === 'true' || (el.dataset.originalRequired === 'true' && !el.hasAttribute('required'))) {
+            el.setAttribute('required', '');
+            if(el.dataset.conditionallyHiddenRequired === 'true') el.removeAttribute('data-conditionally-hidden-required');
+            console.log('[DOM] widgetId: checkbox-1753476228817, input', el, 'set required');
+          }
+        }
+      });
+    }
+    
+    function evaluateConditionsForWidget_switch_1753477515102() {
+      console.log('[evaluateConditionsForWidget] widgetId:', 'switch-1753477515102', 'conditions:', {"logic":"AND","groups":[{"id":"group-1753477543302","logic":"AND","conditions":[{"id":"condition-1753477543302","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]});
+      const container = document.getElementById('container-switch-1753477515102');
+      if (!container) { console.warn('[evaluateConditionsForWidget] Container not found:', 'container-switch-1753477515102'); return; }
+
+      const widgetConditions = {"logic":"AND","groups":[{"id":"group-1753477543302","logic":"AND","conditions":[{"id":"condition-1753477543302","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}]}; // Store conditions in local variable
+      let overallShouldShow;
+      const groupResults = [];
+      let processedAnyGroup = false;
+
+      
+      // Group 1 (logic: AND)
+      {
+        const group = {"id":"group-1753477543302","logic":"AND","conditions":[{"id":"condition-1753477543302","field":"radio-1753476208530","operator":"equals","value":"Yes"}]}; // Define group variable for this scope
+        let groupSatisfied = group.logic === 'AND';
+        let validConditionsProcessedInGroup = 0;
+
+        
+        // Cond 1 (Field: radio-1753476208530)
+          {
+            const fieldValue = getFieldValue('radio-1753476208530');
+          console.log('[condition] widgetId: switch-1753477515102, group: 1, cond: 1, field: radio-1753476208530, operator: equals, value:', fieldValue, 'vs', 'Yes');
+          let conditionPasses = false;
+          conditionPasses = equals(fieldValue, 'Yes');
+          console.log('[condition result] widgetId: switch-1753477515102, group: 1, cond: 1, result:', conditionPasses);
+          if (group.logic === 'AND') {
+            groupSatisfied = groupSatisfied && conditionPasses;
+          } else { // OR
+            groupSatisfied = groupSatisfied || conditionPasses;
+          }
+          validConditionsProcessedInGroup++;
+        }
+
+        if (group.conditions.length > 0 && validConditionsProcessedInGroup === 0) {
+           console.log('[group] widgetId: switch-1753477515102, group: 1, all conditions invalid.');
+        }
+        groupResults.push(groupSatisfied);
+        processedAnyGroup = true;
+        console.log('[group result] widgetId: switch-1753477515102, group: 1, result:', groupSatisfied);
+      }
+
+      if (!processedAnyGroup && widgetConditions.groups && widgetConditions.groups.length > 0) { 
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: switch-1753477515102, no valid groups, default show:', overallShouldShow);
+      } else if (groupResults.length > 0) {
+        if (widgetConditions.logic === 'AND') {
+          overallShouldShow = groupResults.every(r => r);
+        } else { // OR
+          overallShouldShow = groupResults.some(r => r);
+        }
+        console.log('[widget] widgetId: switch-1753477515102, groupResults:', groupResults, 'overallShouldShow:', overallShouldShow);
+      } else { // No groups or no processable groups
+        overallShouldShow = widgetConditions.logic === 'AND';
+        console.log('[widget] widgetId: switch-1753477515102, no groups, default show:', overallShouldShow);
+      }
+
+      container.style.display = overallShouldShow ? '' : 'none';
+      console.log('[DOM] widgetId: switch-1753477515102, set display:', overallShouldShow ? '' : 'none');
+
+        const inputs = container.querySelectorAll('input, select, textarea');
+      inputs.forEach(inputEl => {
+        const el = inputEl;
+        const originalRequired = el.dataset.originalRequired === undefined ? el.hasAttribute('required') : el.dataset.originalRequired === 'true';
+        if (el.dataset.originalRequired === undefined) {
+            el.dataset.originalRequired = originalRequired ? 'true' : 'false';
+        }
+
+        if (!overallShouldShow) {
+          if (el.hasAttribute('required')) {
+            el.removeAttribute('required');
+            el.dataset.conditionallyHiddenRequired = 'true';
+            console.log('[DOM] widgetId: switch-1753477515102, input', el, 'removed required');
+          }
+        } else {
+          if (el.dataset.conditionallyHiddenRequired === 'true' || (el.dataset.originalRequired === 'true' && !el.hasAttribute('required'))) {
+            el.setAttribute('required', '');
+            if(el.dataset.conditionallyHiddenRequired === 'true') el.removeAttribute('data-conditionally-hidden-required');
+            console.log('[DOM] widgetId: switch-1753477515102, input', el, 'set required');
+          }
+        }
+      });
+    }
+    
+  function evaluateConditions() {
+    console.log('[evaluateConditions] Master evaluation triggered');
+    evaluateConditionsForWidget_time_1753476458069();
+    evaluateConditionsForWidget_checkbox_1753476482803();
+    evaluateConditionsForWidget_checkbox_1753476228817();
+    evaluateConditionsForWidget_switch_1753477515102();
+  }
+  
+  function setupEventListeners() {
+    
+            const el_date_1753476192773 = document.getElementById('date-1753476192773');
+            if (el_date_1753476192773) {
+                el_date_1753476192773.addEventListener('input', evaluateConditions);
+                el_date_1753476192773.addEventListener('change', evaluateConditions);
+                console.log('[listener] Attached to field', el_date_1753476192773);
+            } else { console.warn('[listener] Element "date-1753476192773" not found for listener.'); }
+
+            document.getElementsByName('radio_icecream').forEach(radioElement => {
+                radioElement.addEventListener('change', evaluateConditions);
+                console.log('[listener] Attached to radio', radioElement);
+            });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('[init] DOMContentLoaded, evaluating conditions and setting up listeners');
+    evaluateConditions();
+    setupEventListeners();
+  });
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(() => {
+        console.log('[init] Document already loaded, evaluating conditions and setting up listeners (fallback)');
+        evaluateConditions();
+        setupEventListeners();
+    }, 100);
+  }
+  
+    
+    function formatWebhookResponse() {
+      const responseContent = document.getElementById('webhook-response-content');
+      if (!responseContent) return;
+
+      let content = responseContent.textContent || '';
+      let formattedContent = '';
+      
+      try {
+        // Parse the JSON content
+        const parsed = JSON.parse(content);
+        
+        if (Array.isArray(parsed)) {
+          // Handle array of items
+          formattedContent = parsed.map(item => {
+            if (typeof item === 'string') return item;
+            if (item && typeof item === 'object') {
+              // Extract all values from the object
+              return Object.entries(item)
+                .map(([key, value]) => {
+                  // Skip empty or null values
+                  if (value === null || value === undefined || value === '') return '';
+                  // For text/output fields, just return the value
+                  if (key === 'text' || key === 'output') return String(value);
+                  // For imageUrl, create a link
+                  if (key === 'imageUrl') return `Image URL: ${value}`;
+                  // For other fields, include the key
+                  return `${key}: ${value}`;
+                })
+                .filter(text => text) // Remove empty strings
+                .join('\n');
+            }
+            return String(item);
+          }).filter(text => text.trim()) // Remove empty items
+           .join('\n\n\n\n'); // Quadruple line break between items for extra spacing
+        } else if (typeof parsed === 'object' && parsed !== null) {
+          // Handle single object
+          formattedContent = Object.entries(parsed)
+            .map(([key, value]) => {
+              if (value === null || value === undefined || value === '') return '';
+              if (key === 'text' || key === 'output') return String(value);
+              if (key === 'imageUrl') return `Image URL: ${value}`;
+              return `${key}: ${value}`;
+            })
+            .filter(text => text)
+            .join('\n\n'); // Double line break between fields in a single object
+        } else {
+          formattedContent = String(parsed);
+        }
+      } catch (e) {
+        // Not JSON, use the original content
+        formattedContent = content;
+      }
+
+      // Replace line breaks and add spacing
+      formattedContent = formattedContent.replace(/\\n|\n|<br\s*\/?>/g, '\n');
+
+      // Convert URLs to clickable links
+      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      formattedContent = formattedContent.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+
+      // Set the formatted content with proper line breaks and extra spacing
+      responseContent.innerHTML = formattedContent
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line)
+        .join('<br /><br />'); // Double <br /> tags for extra spacing between lines
+    }
+  
+  </script>
+</body>
+</html>

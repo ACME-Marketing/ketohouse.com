@@ -1,0 +1,412 @@
+---
+// No imports needed, this is a self-contained component
+---
+
+<div id="start-journey-popup" class="popup-overlay" style="display: none;">
+  <div class="popup-container">
+    <button class="popup-close" aria-label="Close popup">&times;</button>
+    <div class="popup-header">
+      <h2>Start Your Keto Journey Today!</h2>
+      <p>Get personalized meal plans and expert guidance</p>
+    </div>
+    <div class="popup-content">
+      <form id="journey-form" method="POST" action="https://n8n.srv874889.hstgr.cloud/webhook-test/9224df70-9a41-48c7-9934-6b2d6f2d03e1">
+        <div class="form-group">
+          <label for="first_name">First Name<span class="required">*</span></label>
+          <input type="text" id="first_name" name="first_name" placeholder="Your first name" required class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="last_name">Last Name<span class="required">*</span></label>
+          <input type="text" id="last_name" name="last_name" placeholder="Your last name" required class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email<span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone (optional for SMS updates)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="keto_goal">What's your main keto goal?<span class="required">*</span></label>
+          <select id="keto_goal" name="keto_goal" required class="form-control">
+            <option value="" disabled selected>Select your goal</option>
+            <option value="weight_loss">Weight Loss</option>
+            <option value="health_improvement">Health Improvement</option>
+            <option value="mental_clarity">Mental Clarity</option>
+            <option value="athletic_performance">Athletic Performance</option>
+            <option value="disease_management">Disease Management</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="d-block">Have you tried keto before?</label>
+          <div class="radio-group">
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="keto_experience_yes" name="keto_experience" value="Yes" required>
+              <label class="form-check-label" for="keto_experience_yes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="keto_experience_no" name="keto_experience" value="No" required>
+              <label class="form-check-label" for="keto_experience_no">No</label>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-lg">Get Started</button>
+        
+        <p class="form-disclaimer">By submitting, you agree to receive emails about keto tips, recipes, and exclusive offers. You can unsubscribe anytime.</p>
+        
+        <div class="form-status"></div>
+      </form>
+      
+      <div id="form-success" class="form-success" style="display: none;">
+        <h3>Welcome to KetoHouse! 🎉</h3>
+        <p>Check your email for your personalized keto starter guide. We're excited to be part of your journey!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .popup-container {
+    background: white;
+    border-radius: 1rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6b7280;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  
+  .popup-close:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  
+  .popup-header {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .popup-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem;
+  }
+  
+  .popup-header p {
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  .popup-content {
+    padding: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #111827;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    outline: 0;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .form-check {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-check-input {
+    margin-right: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    accent-color: #16a34a;
+  }
+  
+  .form-check-label {
+    cursor: pointer;
+    color: #374151;
+  }
+  
+  .required {
+    color: #ef4444;
+    margin-left: 0.25rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    color: #fff;
+    background-color: #16a34a;
+    border-color: #16a34a;
+  }
+  
+  .btn-primary:hover {
+    background-color: #15803d;
+    border-color: #15803d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .btn-lg {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+  }
+  
+  .form-disclaimer {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+  }
+  
+  .form-status {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    display: none;
+  }
+  
+  .form-status.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    display: block;
+  }
+  
+  .form-status.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    display: block;
+  }
+  
+  .form-success {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .form-success h3 {
+    color: #16a34a;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-success p {
+    color: #374151;
+    font-size: 1.125rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .popup-container {
+      width: 95%;
+      margin: 1rem;
+    }
+    
+    .popup-header {
+      padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .popup-content {
+      padding: 1.5rem;
+    }
+    
+    .radio-group {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('start-journey-popup');
+    const form = document.getElementById('journey-form');
+    const formContainer = form.parentElement;
+    const successMessage = document.getElementById('form-success');
+    const closeBtn = popup.querySelector('.popup-close');
+    
+    // Close popup when clicking close button
+    closeBtn.addEventListener('click', function() {
+      popup.style.display = 'none';
+    });
+    
+    // Close popup when clicking outside
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+    
+    // Close popup with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && popup.style.display !== 'none') {
+        popup.style.display = 'none';
+      }
+    });
+    
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const submitButton = form.querySelector('button[type="submit"]');
+      const formStatus = form.querySelector('.form-status');
+      
+      // Reset status
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+      
+      // Disable submit button
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+      
+      // Send form data
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show success message
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+          
+          // Close popup after 3 seconds
+          setTimeout(() => {
+            popup.style.display = 'none';
+            // Reset form for next use
+            form.reset();
+            form.style.display = 'block';
+            successMessage.style.display = 'none';
+          }, 3000);
+        } else {
+          throw new Error('Submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Something went wrong. Please try again.';
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Get Started';
+      });
+    });
+  });
+  
+  // Function to open popup (will be called from homepage)
+  window.openStartJourneyPopup = function() {
+    const popup = document.getElementById('start-journey-popup');
+    if (popup) {
+      popup.style.display = 'flex';
+    }
+  };
+</script>
