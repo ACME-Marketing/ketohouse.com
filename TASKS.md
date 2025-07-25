@@ -56,7 +56,7 @@ This document breaks down the KetoHouse.com MVP project into a checklist of acti
     - [x] Apply Tailwind CSS classes to all pages and components for a polished look and feel.
     - [x] Use `@tailwindcss/typography` or global styles to ensure WordPress content in `set:html` is styled correctly.
     - [x] Ensure the site is fully responsive on mobile, tablet, and desktop devices.
-    - [x] Implement a simple preloader.
+    - [ ] Implement a simple preloader.
 
 ## Phase 4: Testing, Deployment & Launch
 

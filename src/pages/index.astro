@@ -1,15 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import RecipeCard from '../components/RecipeCard.astro';
-import ArticlePreview from '../components/ArticlePreview.astro';
-import { getPostsByCategory } from '../lib/graphql';
-
-const featuredRecipes = await getPostsByCategory('Recipes');
-const featuredScienceArticles = await getPostsByCategory('Science');
-
-// Limit to 3 featured items for now
-const recipesToShow = featuredRecipes.slice(0, 3);
-const scienceArticlesToShow = featuredScienceArticles.slice(0, 3);
 ---
 
 <BaseLayout>
@@ -19,24 +9,22 @@ const scienceArticlesToShow = featuredScienceArticles.slice(0, 3);
   </div>
 
   <section class="mb-12">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Featured Recipes</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {recipesToShow.length > 0 ? (
-        recipesToShow.map(recipe => <RecipeCard recipe={recipe} />)
-      ) : (
-        <p class="col-span-full text-center text-gray-500">No featured recipes available yet.</p>
-      )}
-    </div>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">About KetoHouse</h2>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      KetoHouse is your premier online resource for embracing the ketogenic lifestyle. Whether you're looking to optimize your health, manage your weight, or simply explore new culinary horizons, we provide science-backed information, delicious recipes, and practical tools to support your journey.
+    </p>
+    <p class="text-lg text-gray-700 leading-relaxed mt-4">
+      Dive into our comprehensive guides on the science behind keto, discover a wide array of recipes segmented by cuisine and protein type, and utilize our static meal planners with shopping lists to simplify your daily routine. We also address the mental aspects of dietary changes, offering resources to help you navigate challenges with food and stress.
+    </p>
   </section>
 
-  <section>
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Latest Science Articles</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {scienceArticlesToShow.length > 0 ? (
-        scienceArticlesToShow.map(article => <ArticlePreview article={article} />)
-      ) : (
-        <p class="col-span-full text-center text-gray-500">No science articles available yet.</p>
-      )}
+  <section class="text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Explore Our Resources</h2>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/recipes" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Browse Recipes</a>
+      <a href="/science" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Understand the Science</a>
+      <a href="/meal-planners" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Get Meal Plans</a>
+      <a href="/mind-and-body" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Mind & Body Connection</a>
     </div>
   </section>
 </BaseLayout>
