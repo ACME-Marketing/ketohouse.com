@@ -12,12 +12,12 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.10.2",
     "graphql": "^16.11.0",
     "graphql-request": "^7.2.0"
   },
   "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.32.0",
