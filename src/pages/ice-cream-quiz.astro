@@ -1,0 +1,10 @@
+---
+// This page renders the webhook-form.html exactly as is
+import fs from 'fs';
+import path from 'path';
+
+const webhookFormPath = path.join(process.cwd(), 'src', 'webhook-form.html');
+const webhookFormContent = fs.readFileSync(webhookFormPath, 'utf-8');
+---
+
+<Fragment set:html={webhookFormContent} />
